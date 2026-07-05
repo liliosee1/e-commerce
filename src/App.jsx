@@ -1,14 +1,17 @@
 import React from 'react'
-import { Routes, Route, Link, useNavigate } from 'react-router-dom'
+import { Routes, Route, Link, Navigate, useNavigate } from 'react-router-dom'
 import ProductList from './pages/ProductList'
 import ProductDetail from './pages/ProductDetail'
 import CartPage from './pages/CartPage'
 import Checkout from './pages/Checkout'
 import Orders from './pages/Orders'
+import AuthPage from './pages/AuthPage'
 import { useCart } from './context/CartContext'
+import { useAuth } from './context/AuthContext'
 
 export default function App() {
   const { cartCount, toast } = useCart()
+  const { isAuthenticated, logout } = useAuth()
   const navigate = useNavigate()
 
   return (
@@ -23,6 +26,11 @@ export default function App() {
               Cart
               <span className="rounded-full bg-slate-900 px-2 py-0.5 text-[11px] font-semibold text-white">{cartCount}</span>
             </Link>
+            {isAuthenticated ? (
+              <button onClick={() => { logout(); navigate('/login') }} className="rounded-full px-3 py-2 transition hover:bg-white/10">Logout</button>
+            ) : (
+              <Link to="/login" className="rounded-full px-3 py-2 transition hover:bg-white/10">Login</Link>
+            )}
           </nav>
         </div>
       </header>
@@ -35,9 +43,11 @@ export default function App() {
         <Routes>
           <Route path="/" element={<ProductList />} />
           <Route path="/products/:id" element={<ProductDetail />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/orders" element={<Orders />} />
+          <Route path="/login" element={isAuthenticated ? <Navigate to="/" replace /> : <AuthPage />} />
+          <Route path="/register" element={isAuthenticated ? <Navigate to="/" replace /> : <AuthPage />} />
+          <Route path="/cart" element={isAuthenticated ? <CartPage /> : <Navigate to="/login" replace />} />
+          <Route path="/checkout" element={isAuthenticated ? <Checkout /> : <Navigate to="/login" replace />} />
+          <Route path="/orders" element={isAuthenticated ? <Orders /> : <Navigate to="/login" replace />} />
         </Routes>
       </main>
     </div>
