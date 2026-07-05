@@ -31,7 +31,7 @@ export default function ProductList() {
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">Browse products</p>
-            <h1 className="mt-1 text-2xl font-semibold text-slate-900">Find the right gear for your next project</h1>
+            <h1 className="mt-1 text-2xl font-semibold text-slate-900">Pick something fresh for your next order</h1>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
             <input value={search} onChange={(e) => { setSearch(e.target.value); setPage(1) }} placeholder="Search products" className="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm outline-none focus:border-slate-500 sm:min-w-[240px]" />
