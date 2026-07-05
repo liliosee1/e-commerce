@@ -16,7 +16,7 @@ export default function ProductDetail() {
 
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
-      <Link to="/" className="mb-4 inline-flex text-sm font-semibold text-slate-600">← Back to catalog</Link>
+      <Link to="/" className="mb-4 inline-flex rounded-full border border-slate-200 px-3 py-1.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50">← Back to catalog</Link>
       <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="overflow-hidden rounded-2xl bg-slate-100">
           <img src={imageUrl} alt={data.name} className="h-full w-full object-cover" />
