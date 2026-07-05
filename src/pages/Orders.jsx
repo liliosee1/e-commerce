@@ -10,7 +10,7 @@ export default function Orders() {
       <div className="mb-6 flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-semibold text-slate-900">Your orders</h2>
-          <p className="text-sm text-slate-600">Your recent purchases and delivery status.</p>
+          <p className="text-sm text-slate-600">A quick view of your recent purchases and order status.</p>
         </div>
         <Link to="/" className="text-sm font-semibold text-slate-600">Back to shop</Link>
       </div>
