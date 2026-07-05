@@ -1,63 +1,63 @@
-# E-Comus Client
+ E-Commerce Web Client
 
-This project is a beginner-friendly e-commerce web client built with React, Tailwind CSS, Axios, and TanStack Query. It consumes the live E-Comus API and includes a product catalog, product details, cart management, checkout, and order history.
+A React-based e-commerce web application that consumes the E-Comus API. Built using React, Tailwind CSS, Axios, and TanStack Query.
 
-## Features
+Features
 
-- Product listing with search and category filtering
-- Product detail page
-- Persistent cart stored in local storage
-- Checkout flow with order confirmation fallback handling
-- Order history page
-- Responsive UI built with Tailwind
+Products
+View product list
+Search and filter by category
+Product detail page
+Pagination or infinite scroll
+Loading, error, and empty states
 
-## Tech Stack
+ Cart
+Add to cart
+Update quantity
+Remove items
+Persistent cart (survives refresh)
+Live total calculation
 
-- React
-- React Router
-- Tailwind CSS
-- Axios
-- TanStack Query
-- Vite
+Checkout & Orders
+Place orders
+Order confirmation page
+View order history
 
-## Setup
+ Authentication
+User registration with OTP verification
+Login system
+Protected routes after login
 
-1. Install dependencies
+ Tech Stack
+React (Hooks + Router)
+Tailwind CSS
+Axios (centralized API client)
+TanStack Query (server state management)
 
-```bash
-npm install
-```
 
-2. Start the development server
+ API Integration
+Built using E-Comus API
+Endpoints used:
+Products (list, detail, search, filter)
+Categories
+Cart (add, update, remove)
+Orders / Checkout
+Authentication (register, OTP, login)
+Axios is configured in one central file with base URL and interceptors.
 
-```bash
-npm run dev
-```
+State Management
+Server State (TanStack Query)
+Products
+Cart
+Orders
+UI State (React useState/useReducer)
+Form inputs
+Modals
+Search input before submit
+Toasts / UI toggles
 
-3. Open the local URL shown in the terminal.
-
-## Environment
-
-The app uses the API base URL from the included `.env` file:
-
-```env
-VITE_API_BASE_URL=https://e-commas-apis-production-e0f8.up.railway.app/api
-```
-
-## API Notes
-
-The live API response shape is slightly different from the initial starter code. The app was adapted to use the real nested payload structure from the documentation, especially for product listing and product detail responses.
-
-## Deployment
-
-You can deploy this project on Vercel or Netlify by connecting the repository and using the Vite build command:
-
-```bash
-npm run build
-```
-
-## Screenshots
-
-Add screenshots here after running the app locally.
- 
- Updated: 2026-06-30
+ Authentication Flow
+User registers
+OTP is sent and verified
+User logs in
+Token is stored
