@@ -39,7 +39,7 @@ export default function Checkout() {
     <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
       <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
         <h2 className="text-2xl font-semibold text-slate-900">Checkout</h2>
-        <p className="mt-2 text-sm text-slate-600">Review your order and provide delivery details.</p>
+        <p className="mt-2 text-sm text-slate-600">Add your delivery details and place your order in seconds.</p>
         <div className="mt-6 space-y-4">
           <div>
             <label className="mb-1 block text-sm font-medium text-slate-700">Full name</label>
