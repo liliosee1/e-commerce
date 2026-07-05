@@ -13,7 +13,7 @@ export default function CartPage() {
         <div className="mb-4 flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-semibold text-slate-900">Your cart</h2>
-            <p className="text-sm text-slate-600">Keep track of the items you plan to buy.</p>
+            <p className="text-sm text-slate-600">Review your selected items before checkout.</p>
           </div>
           <Link to="/" className="text-sm font-semibold text-slate-600">Continue shopping</Link>
         </div>
