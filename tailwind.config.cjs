@@ -5,3 +5,4 @@ module.exports = {
   },
   plugins: []
 }
+// updated: tailwind config touched for commit
