@@ -4,10 +4,18 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || 'https://e-commas-apis-production-e0f8.up.railway.app/api'
 })
 
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('ecomus-commerce-token')
+  if (token) {
+    config.headers = config.headers || {}
+    config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
+})
+
 api.interceptors.response.use(
   res => res,
   err => {
-    //  global error handling
     if (!err.response) {
       return Promise.reject({ message: 'Network error' })
     }
