@@ -2,7 +2,22 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function ProductCard({ product, onAdd }) {
-  const imageUrl = product.image || product.images?.[0] || product.variants?.[0]?.images?.[0] || 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80'
+  const getFallbackImage = () => {
+    const cat = (product?.category?.name || product?.category || '').toString().toLowerCase()
+    const map = {
+      electronics: 'electronics,gadgets,technology',
+      phones: 'smartphone,phone,technology',
+      computers: 'computer,laptop,technology',
+      clothing: 'clothing,fashion,apparel',
+      shoes: 'shoes,footwear,fashion',
+      furniture: 'furniture,home,interior',
+      general: 'product,store'
+    }
+    const keywords = map[cat] || cat || product?.name || 'product'
+    return `https://source.unsplash.com/600x400/?${encodeURIComponent(keywords)}`
+  }
+
+  const imageUrl = product.image || product.images?.[0] || product.variants?.[0]?.images?.[0] || getFallbackImage()
 
   return (
     <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
