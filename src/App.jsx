@@ -9,6 +9,14 @@ import AuthPage from './pages/AuthPage'
 import { useCart } from './context/CartContext'
 import { useAuth } from './context/AuthContext'
 
+function RequireAuth({ children, isAuthenticated }) {
+  return isAuthenticated ? children : <Navigate to="/login" replace />
+}
+
+function GuestOnly({ children, isAuthenticated }) {
+  return !isAuthenticated ? children : <Navigate to="/" replace />
+}
+
 export default function App() {
   const { cartCount, toast } = useCart()
   const { isAuthenticated, logout } = useAuth()
@@ -41,13 +49,14 @@ export default function App() {
           </div>
         ) : null}
         <Routes>
-          <Route path="/" element={<ProductList />} />
-          <Route path="/products/:id" element={<ProductDetail />} />
-          <Route path="/login" element={isAuthenticated ? <Navigate to="/" replace /> : <AuthPage />} />
-          <Route path="/register" element={isAuthenticated ? <Navigate to="/" replace /> : <AuthPage />} />
-          <Route path="/cart" element={isAuthenticated ? <CartPage /> : <Navigate to="/login" replace />} />
-          <Route path="/checkout" element={isAuthenticated ? <Checkout /> : <Navigate to="/login" replace />} />
-          <Route path="/orders" element={isAuthenticated ? <Orders /> : <Navigate to="/login" replace />} />
+          <Route path="/" element={<RequireAuth isAuthenticated={isAuthenticated}><ProductList /></RequireAuth>} />
+          <Route path="/products/:id" element={<RequireAuth isAuthenticated={isAuthenticated}><ProductDetail /></RequireAuth>} />
+          <Route path="/login" element={<GuestOnly isAuthenticated={isAuthenticated}><AuthPage /></GuestOnly>} />
+          <Route path="/register" element={<GuestOnly isAuthenticated={isAuthenticated}><AuthPage /></GuestOnly>} />
+          <Route path="/cart" element={<RequireAuth isAuthenticated={isAuthenticated}><CartPage /></RequireAuth>} />
+          <Route path="/checkout" element={<RequireAuth isAuthenticated={isAuthenticated}><Checkout /></RequireAuth>} />
+          <Route path="/orders" element={<RequireAuth isAuthenticated={isAuthenticated}><Orders /></RequireAuth>} />
+          <Route path="*" element={<Navigate to={isAuthenticated ? '/' : '/login'} replace />} />
         </Routes>
       </main>
     </div>
